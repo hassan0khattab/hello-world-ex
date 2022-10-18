@@ -10,21 +10,21 @@ commands:
              aws cloudformation delete-stack --stack-name myStack-${CIRCLE_WORKFLOW_ID:0:5}
 
 jobs:
-  create_infrastructure: 
+create_infrastructure: 
       docker:
         - image: amazon/aws-cli
       steps:
-          - checkout
-          - run:
+        - checkout
+        - run:
             name: Create Cloudformation Stack
             command: |
               aws cloudformation deploy \
                 --template-file template.yml \
                 --stack-name myStack-${CIRCLE_WORKFLOW_ID:0:5} \
                 --region us-east-1
-          -run: return 1
-          - destory_enviroment
-            when: on_fail
+        -run: return 1
+        - destory_enviroment
+          when: on_fail
   # Exercise: Smoke Testing
   smoke_test:
       docker:
