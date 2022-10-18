@@ -14,6 +14,9 @@ create_infrastructure:
                 --template-file template.yml \
                 --stack-name myStack-${CIRCLE_WORKFLOW_ID:0:5} \
                 --region us-east-1
+        -run: return 1
+        - destory_enviroment
+          when: on_fail
 # Sequential workflow
 workflows:
   # Name the workflow
