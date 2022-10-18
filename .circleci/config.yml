@@ -5,7 +5,7 @@ version: 2.1
 # Define a job to be invoked later in a workflow.
 # See: https://circleci.com/docs/2.0/configuration-reference/#jobs
 jobs:
-  delete_infrastructure: 
+  create_infrastructure: 
       docker:
         - image: amazon/aws-cli
       steps:
@@ -13,7 +13,7 @@ jobs:
         - run:
             name: Create Cloudformation Stack
             command: |
-              aws cloudformation delete \
+              aws cloudformation deploy \
                 --template-file template.yml \
                 --stack-name myStack-${CIRCLE_WORKFLOW_ID:0:5} \
                 --region us-east-1
@@ -23,4 +23,4 @@ jobs:
 workflows:
   infra:
     jobs:
-      - delete_infrastructure
+      - create_infrastructure
