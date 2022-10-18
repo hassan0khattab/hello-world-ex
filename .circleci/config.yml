@@ -17,6 +17,6 @@ create_infrastructure:
 # Sequential workflow
 workflows:
   # Name the workflow
-  myWorkflow:
+  Create:
     jobs:
       - create_infrastructure
