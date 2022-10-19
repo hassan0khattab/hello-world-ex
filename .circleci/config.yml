@@ -78,3 +78,4 @@ workflows:
     #  - configure_infrastructure
     #  - create_and_deploy_front_end
       - promote_to_production
+      - clean_up_old_front_end
